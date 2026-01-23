@@ -1,0 +1,75 @@
+>>> print_square = __import__('4-print_square').print_square
+
+Test 1 : Carré de taille 4
+    >>> print_square(4)
+    ####
+    ####
+    ####
+    ####
+
+Test 2 : Carré de taille 10
+    >>> print_square(10)
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+
+Test 3 : Carré de taille 0
+    >>> print_square(0)
+
+Test 4 : Carré de taille 1
+    >>> print_square(1)
+    #
+
+Test 5 : Erreur - size négatif
+    >>> print_square(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: size must be >= 0
+
+Test 6 : Erreur - size est un float
+    >>> print_square(3.5)
+    Traceback (most recent call last):
+        ...
+    TypeError: size must be an integer
+
+Test 7 : Erreur - size est un float négatif
+    >>> print_square(-3.5)
+    Traceback (most recent call last):
+        ...
+    TypeError: size must be an integer
+
+Test 8 : Erreur - size est une string
+    >>> print_square("5")
+    Traceback (most recent call last):
+        ...
+    TypeError: size must be an integer
+
+Test 9 : Erreur - size est None
+    >>> print_square(None)
+    Traceback (most recent call last):
+        ...
+    TypeError: size must be an integer
+
+Test 10 : Carré de taille 2
+    >>> print_square(2)
+    ##
+    ##
+
+Test 11 : Erreur - size est une liste
+    >>> print_square([4])
+    Traceback (most recent call last):
+        ...
+    TypeError: size must be an integer
+
+Test 12 : Erreur - size est un dictionnaire
+    >>> print_square({"size": 4})
+    Traceback (most recent call last):
+        ...
+    TypeError: size must be an integer
