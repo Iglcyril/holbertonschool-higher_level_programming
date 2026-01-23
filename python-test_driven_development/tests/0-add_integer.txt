@@ -45,3 +45,27 @@ Test 10 : Erreur - a est une string
     Traceback (most recent call last):
         ...
     TypeError: a must be an integer
+
+Test 11 : Float infinity pour a
+>>> add_integer(float('inf'), 5)
+Traceback (most recent call last):
+    ...
+OverflowError: cannot convert float infinity to integer
+
+Test 12 : Float infinity pour b
+>>> add_integer(5, float('inf'))
+Traceback (most recent call last):
+    ...
+OverflowError: cannot convert float infinity to integer
+
+Test 13 : Float négatif infinity
+>>> add_integer(float('-inf'), 5)
+Traceback (most recent call last):
+    ...
+OverflowError: cannot convert float infinity to integer
+
+Test 14 : Float NaN (Not a Number)
+>>> add_integer(float('nan'), 5)
+Traceback (most recent call last):
+    ...
+ValueError: cannot convert float NaN to integer
