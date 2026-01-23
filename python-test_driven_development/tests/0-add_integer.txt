@@ -1,10 +1,4 @@
-Le module ``0-add_integer``
-============================
-
-Utilisation de ``add_integer``
--------------------------------
-
-    >>> add_integer = __import__('0-add_integer').add_integer
+>>> add_integer = __import__('0-add_integer').add_integer
 
 Test 1 : Addition de deux entiers positifs
     >>> add_integer(1, 2)
@@ -51,4 +45,3 @@ Test 10 : Erreur - a est une string
     Traceback (most recent call last):
         ...
     TypeError: a must be an integer
-```
