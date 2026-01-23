@@ -1,0 +1,63 @@
+>>> say_my_name = __import__('3-say_my_name').say_my_name
+
+Test 1 : Prénom et nom
+    >>> say_my_name("John", "Smith")
+    My name is John Smith
+
+Test 2 : Seulement prénom
+    >>> say_my_name("Bob")
+    My name is Bob 
+
+Test 3 : Prénom et nom vide explicite
+    >>> say_my_name("Walter", "White")
+    My name is Walter White
+
+Test 4 : Erreur - first_name est un nombre
+    >>> say_my_name(12, "White")
+    Traceback (most recent call last):
+        ...
+    TypeError: first_name must be a string
+
+Test 5 : Erreur - first_name est None
+    >>> say_my_name(None, "White")
+    Traceback (most recent call last):
+        ...
+    TypeError: first_name must be a string
+
+Test 6 : Erreur - last_name est un nombre
+    >>> say_my_name("John", 123)
+    Traceback (most recent call last):
+        ...
+    TypeError: last_name must be a string
+
+Test 7 : Erreur - last_name est None
+    >>> say_my_name("John", None)
+    Traceback (most recent call last):
+        ...
+    TypeError: last_name must be a string
+
+Test 8 : Erreur - les deux sont des nombres
+    >>> say_my_name(12, 34)
+    Traceback (most recent call last):
+        ...
+    TypeError: first_name must be a string
+
+Test 9 : Prénom vide string (edge case)
+    >>> say_my_name("", "Smith")
+    My name is  Smith
+
+Test 10 : Les deux vides
+    >>> say_my_name("", "")
+    My name is  
+
+Test 11 : Erreur - first_name est une liste
+    >>> say_my_name(["John"], "Smith")
+    Traceback (most recent call last):
+        ...
+    TypeError: first_name must be a string
+
+Test 12 : Erreur - last_name est un dict
+    >>> say_my_name("John", {"name": "Smith"})
+    Traceback (most recent call last):
+        ...
+    TypeError: last_name must be a string
