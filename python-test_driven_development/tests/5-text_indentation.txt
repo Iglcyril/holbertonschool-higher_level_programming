@@ -1,0 +1,74 @@
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+Test 1 : Texte simple avec un point
+    >>> text_indentation("Hello.")
+    Hello.
+    <BLANKLINE>
+
+Test 2 : Texte avec point d'interrogation
+    >>> text_indentation("How are you?")
+    How are you?
+    <BLANKLINE>
+
+Test 3 : Texte avec deux-points
+    >>> text_indentation("My name: John")
+    My name:
+    <BLANKLINE>
+    John
+
+Test 4 : Texte avec plusieurs délimiteurs
+    >>> text_indentation("Hello. How are you? I am fine: thanks.")
+    Hello.
+    <BLANKLINE>
+    How are you?
+    <BLANKLINE>
+    I am fine:
+    <BLANKLINE>
+    thanks.
+    <BLANKLINE>
+
+Test 5 : Texte avec espaces après délimiteurs
+    >>> text_indentation("Hello.    Next sentence")
+    Hello.
+    <BLANKLINE>
+    Next sentence
+
+Test 6 : Erreur - text n'est pas une string
+    >>> text_indentation(123)
+    Traceback (most recent call last):
+        ...
+    TypeError: text must be a string
+
+Test 7 : Erreur - text est None
+    >>> text_indentation(None)
+    Traceback (most recent call last):
+        ...
+    TypeError: text must be a string
+
+Test 8 : Texte vide
+    >>> text_indentation("")
+
+Test 9 : Texte avec seulement des espaces
+    >>> text_indentation("   ")
+       
+
+Test 10 : Texte sans délimiteurs
+    >>> text_indentation("Hello world")
+    Hello world
+
+Test 11 : Délimiteurs consécutifs
+    >>> text_indentation("What?. Really?:")
+    What?
+    <BLANKLINE>
+    .
+    <BLANKLINE>
+    Really?
+    <BLANKLINE>
+    :
+    <BLANKLINE>
+
+Test 12 : Erreur - text est une liste
+    >>> text_indentation(["Hello"])
+    Traceback (most recent call last):
+        ...
+    TypeError: text must be a string
