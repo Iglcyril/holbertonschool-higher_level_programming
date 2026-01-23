@@ -1,23 +1,54 @@
+Le module ``0-add_integer``
+============================
+
+Utilisation de ``add_integer``
+-------------------------------
+
     >>> add_integer = __import__('0-add_integer').add_integer
 
+Test 1 : Addition de deux entiers positifs
     >>> add_integer(1, 2)
     3
 
+Test 2 : Addition avec nombre négatif
     >>> add_integer(100, -2)
     98
 
+Test 3 : Utilisation de la valeur par défaut
     >>> add_integer(2)
     100
 
+Test 4 : Addition avec des floats
     >>> add_integer(100.3, -2)
     98
 
+Test 5 : Erreur - b est une string
     >>> add_integer(4, "School")
     Traceback (most recent call last):
         ...
     TypeError: b must be an integer
 
+Test 6 : Erreur - a est None
     >>> add_integer(None)
     Traceback (most recent call last):
         ...
     TypeError: a must be an integer
+
+Test 7 : Addition avec deux floats
+    >>> add_integer(10.5, 5.5)
+    15
+
+Test 8 : Zéro avec zéro
+    >>> add_integer(0, 0)
+    0
+
+Test 9 : Nombres négatifs
+    >>> add_integer(-5, -3)
+    -8
+
+Test 10 : Erreur - a est une string
+    >>> add_integer("hello", 5)
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+```
