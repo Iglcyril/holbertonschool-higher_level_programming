@@ -15,7 +15,7 @@ class Square:
     A square is a geometric shape with four equal sides.
     This is an empty class that will be expanded later.
     """
-    def __init__(self, size)
+    def __init__(self, size):
         """
         Initialize a new Square instance.
         
