@@ -10,7 +10,7 @@ and will be used for various calculations in future implementations.
 class Square:
     """
     This class represents a square.
-    
+
     A square is a geometric shape with four equal sides.
     This is an empty class that will be expanded later.
     """
