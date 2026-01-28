@@ -98,7 +98,7 @@ class Rectangle:
         resultat = ""
         for i in range(self.__height):
             resultat += "#" * self.__width
-            if i < (self.__height -1):
+            if i < (self.__height - 1):
                 resultat += "\n"
 
         return resultat
