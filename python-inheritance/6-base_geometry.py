@@ -18,4 +18,4 @@ class BaseGeometry:
         Raises:
             Exception: This method is not implemented in the base class.
         """
-    raise Exception("area() is not implemented")
+        raise Exception("area() is not implemented")
