@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This module defines an empty BaseGeometry class.
+This module defines a BaseGeometry class with validation.
 """
 
 
@@ -8,7 +8,8 @@ class BaseGeometry:
     """
     Base class for geometry objects.
 
-    This class provides a foundation for geometry-related classes.
+    This class provides a foundation for geometry-related classes
+    and includes validation methods.
     """
 
     def area(self):
@@ -32,7 +33,9 @@ class BaseGeometry:
             TypeError: If value is not an integer.
             ValueError: If value is less than or equal to 0.
         """
-
+        if isinstance(value, bool):
+            raise TypeError(f"{name} must be an integer")
+        
         if not isinstance(value, int):
             raise TypeError(f"{name} must be an integer")
         
