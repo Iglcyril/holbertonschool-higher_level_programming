@@ -16,11 +16,14 @@ if __name__ == "__main__":
     )
     # Create a cursor
     cur = db.cursor()
+
     # Execute SQL query
     cur.execute("SELECT * FROM states ORDER BY id ASC")
+
     # Display results
     for row in cur.fetchall():
         print(row)
+
     # Close cursor and connection
     cur.close()
     db.close()
