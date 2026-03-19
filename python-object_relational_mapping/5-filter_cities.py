@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Script that lists all states with a name starting with N."""
+"""Script that lists all cities of a state from the database."""
 import MySQLdb
 import sys
 
@@ -12,8 +12,11 @@ if __name__ == "__main__":
                          db=sys.argv[3],
                          charset="utf8")
     cur = db.cursor()
-    cur.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
-    for row in cur.fetchall():
-        print(row)
+    cur.execute("""SELECT cities.name FROM cities
+                   INNER JOIN states ON cities.state_id = states.id
+                   WHERE states.name = %s
+                   ORDER BY cities.id ASC""", (sys.argv[4],))
+    rows = cur.fetchall()
+    print(", ".join(row[0] for row in rows))
     cur.close()
     db.close()
