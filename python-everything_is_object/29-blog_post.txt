@@ -1,0 +1,140 @@
+Title: Python: Mutable, Immutable... Everything is Object!
+
+Introduction
+------------
+In Python, everything is an object. Whether it's an integer, a string, a list,
+or even a function, each one is an object with three key attributes: an identity,
+a type, and a value. Understanding this concept is fundamental to mastering Python
+and avoiding common bugs related to how variables and memory work.
+
+id and type
+-----------
+Every object in Python has a unique identifier (its memory address in CPython)
+accessible via the id() function, and a type accessible via the type() function.
+
+    >>> a = 42
+    >>> type(a)
+    <class 'int'>
+    >>> id(a)
+    139926795932424
+
+Two variables can point to the same object, meaning they share the same id:
+
+    >>> a = 89
+    >>> b = 89
+    >>> id(a) == id(b)
+    True   # CPython caches small integers
+
+Mutable Objects
+---------------
+Mutable objects are objects whose value can be changed in place after creation.
+The main mutable types in Python are: list, dict, and set.
+
+    >>> l = [1, 2, 3]
+    >>> id(l)
+    139926795932424
+    >>> l.append(4)
+    >>> l
+    [1, 2, 3, 4]
+    >>> id(l)
+    139926795932424   # same id, same object, modified in place
+
+This means that two variables pointing to the same list will both reflect changes:
+
+    >>> l1 = [1, 2, 3]
+    >>> l2 = l1
+    >>> l1.append(4)
+    >>> l2
+    [1, 2, 3, 4]   # l2 is affected!
+
+Immutable Objects
+-----------------
+Immutable objects cannot be changed after creation. Their value is fixed.
+The main immutable types are: int, float, str, tuple, bool, frozenset.
+
+    >>> s = "hello"
+    >>> id(s)
+    139926795932500
+    >>> s += " world"
+    >>> id(s)
+    139926795933000   # new object created, id changed
+
+With tuples:
+
+    >>> t = (1, 2, 3)
+    >>> t[0] = 99
+    TypeError: 'tuple' object does not support item assignment
+
+Why Does It Matter?
+-------------------
+Python treats mutable and immutable objects very differently under the hood.
+For immutable types, CPython applies optimizations like caching and interning:
+
+- Small integers (-5 to 256) are cached: a = 1; b = 1 → a is b is True
+- The empty tuple () is a singleton: a = (); b = () → a is b is True
+- Strings without spaces are often interned: a = "hello"; b = "hello" → a is b is True
+- Strings with spaces are NOT automatically interned: a = "Best School"; b = "Best School" → a is b is False
+
+For mutable types like lists, no caching occurs. Each literal creates a new object:
+
+    >>> a = [1, 2, 3]
+    >>> b = [1, 2, 3]
+    >>> a is b
+    False   # two separate objects in memory
+
+Also note the difference between + and += on lists:
+
+    >>> l = [1, 2, 3]
+    >>> id(l)
+    139926795932424
+    >>> l = l + [4]   # creates a NEW list
+    >>> id(l)
+    139926795933000   # different id
+
+    >>> l = [1, 2, 3]
+    >>> id(l)
+    139926795932424
+    >>> l += [4]      # modifies in place (calls __iadd__)
+    >>> id(l)
+    139926795932424   # same id!
+
+How Arguments Are Passed to Functions
+--------------------------------------
+Python uses a model called "pass-by-object-reference" (sometimes called
+"pass-by-assignment"). The function receives a reference to the same object,
+not a copy.
+
+For immutable objects, the function cannot modify the original:
+
+    >>> def increment(n):
+    ...     n += 1
+    >>> a = 1
+    >>> increment(a)
+    >>> print(a)
+    1   # unchanged, n += 1 created a new local object
+
+For mutable objects, the function CAN modify the original in place:
+
+    >>> def append_four(lst):
+    ...     lst.append(4)
+    >>> l = [1, 2, 3]
+    >>> append_four(l)
+    >>> print(l)
+    [1, 2, 3, 4]   # modified!
+
+But reassigning the parameter inside the function does NOT affect the original:
+
+    >>> def reassign(lst):
+    ...     lst = [4, 5, 6]
+    >>> l = [1, 2, 3]
+    >>> reassign(l)
+    >>> print(l)
+    [1, 2, 3]   # unchanged, only the local reference was reassigned
+
+Conclusion
+----------
+Understanding mutability and object identity in Python is essential to writing
+correct, predictable code. Always ask yourself: am I modifying the object in place,
+or creating a new one? Use == to compare values, and is to compare identity.
+Be especially careful when passing mutable objects to functions, as they can be
+modified without an explicit return statement.
